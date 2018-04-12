@@ -45,19 +45,22 @@ namespace audit.Services.Implementations
                 var auditObject = (await _repository.Read(filter));
                 if (auditObject == null || auditObject.Count() == 0)
                 {
+                    entity.SetLastBody(entity.Body.ToJson());
                     return await _repository.Create(entity);
                 }
                 else
                 {
-                    var body = auditObject?.FirstOrDefault()?.Body;
-                    var diff = Diff.Get(body?.ToJson(), entity?.Body?.ToJson());
+                    var body = auditObject?.FirstOrDefault()?.LastBody ;
+                    var diff = Diff.Get(body?.ToJson(), entity.Body.ToJson());
 
+                    // I left it here because here is easier to check how it works
                     //var patch = Diff.Patch(body.ToJson(), diff);
-                    //var unpatch = Diff.Unpatch(entity.GetBsonBody().ToJson(), diff);
+                    //var unpatch = Diff.Unpatch(entity?.Body?.ToJson(), diff);
 
                     if (!String.IsNullOrEmpty(diff))
                     {
-                        var update = Builders<AuditObject>.Update.Push<BsonDocument>("_changes", BsonDocument.Parse(diff));
+                        var update = Builders<AuditObject>.Update.Push<BsonDocument>("_changes", BsonDocument.Parse(diff))
+                                    .Set("_lastBody", entity.Body);
                         return await _repository.Update(filter, update);
                     }
                     return entity;
