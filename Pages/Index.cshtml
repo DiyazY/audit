@@ -49,3 +49,21 @@
         </fieldset>
     </form>
 </div>
+@{
+    if(Model.AuditObjects!=null && Model.AuditObjects.Any()){
+        <div class="container">
+            <ul class="list-group">
+                @{
+                    foreach (var item in Model.AuditObjects)
+                    {
+                        <li class="list-group-item">
+                            <div>
+                                <pre>@item.Body</pre>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+}

@@ -68,7 +68,7 @@ namespace audit.Controllers
                 var auditObject = (await _auditService.Read(filter)).FirstOrDefault();
                 var changes = auditObject?.GetChanges();
                 List<AuditModel> list = new List<AuditModel>();
-                string body = auditObject.Body.ToJson();
+                string body = auditObject?.Body?.ToJson();
                 foreach (var diff in changes)
                 {
                     body = Diff.Patch(body, diff.ToJson());

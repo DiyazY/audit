@@ -1,4 +1,5 @@
 ﻿using audit.Entities;
+using audit.Models;
 using audit.Repositories;
 using audit.Services.Interfaces;
 using audit.Utils;
