@@ -21,17 +21,6 @@
                 }       
             }
             <div class="form-group">
-                <label for="app-name">App name</label>
-                <input 
-                    asp-for="RequestModel.AppName"
-                    class="form-control" 
-                    type="text" 
-                    placeholder="app name" 
-                    id="app-name" 
-                    name="AppName" 
-                    required/>   
-            </div>
-            <div class="form-group">
                 <label for="object-id">Object ID</label>
                 <input 
                     asp-for="RequestModel.ObjectId"
@@ -54,11 +43,14 @@
         <div class="container">
             <ul class="list-group">
                 @{
+                    int i = 0;
                     foreach (var item in Model.AuditObjects)
                     {
+                        i++;
                         <li class="list-group-item">
-                            <div>
-                                <pre>@item.Body</pre>
+                            <div class="row">
+                                <div class="col-lg-1 text-center">@i</div>
+                                <pre class="col-lg-11" style="white-space: pre-wrap;">@item.Body</pre>
                             </div>
                         </li>
                     }
@@ -67,3 +59,4 @@
         </div>
     }
 }
+
