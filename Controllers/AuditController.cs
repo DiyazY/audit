@@ -26,7 +26,7 @@ namespace audit.Controllers
         }
 
         /// <summary>
-        /// Takes object
+        /// Post object
         /// </summary>
         /// <param name="model">model</param>
         /// <returns></returns>
@@ -69,6 +69,11 @@ namespace audit.Controllers
                 var changes = auditObject?.GetChanges();
                 List<AuditModel> list = new List<AuditModel>();
                 string body = auditObject?.Body?.ToJson();
+                list.Add(new AuditModel()
+                {
+                    Id = id,
+                    Body = JObject.Parse(body)
+                });
                 foreach (var diff in changes)
                 {
                     body = Diff.Patch(body, diff.ToJson());
