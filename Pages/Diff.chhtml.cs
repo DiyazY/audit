@@ -44,20 +44,30 @@ namespace audit.Pages
             }
             var filter = Builders<AuditObject>.Filter.Eq("_id", RequestModel.ObjectId);
             var auditObject = (await _auditService.Read(filter)).FirstOrDefault();
-            var changes = auditObject?.GetChanges();
-            List<AuditModel> list = new List<AuditModel>();
-            string body = auditObject?.Body?.ToJson();
-            foreach (var diff in changes)
-            {
-                body = Diff.Patch(body, diff.ToJson());
-                list.Add(new AuditModel()
-                {
-                    Id = RequestModel.ObjectId,
-                    Body = JObject.Parse(body)
-                });
+            if(auditObject!=null){
+                var changes = auditObject?.GetChanges();
+                if(changes?.Count>0){
+                    List<AuditModel> list = new List<AuditModel>();
+                    string body = auditObject?.Body?.ToJson();
+                    list.Add(new AuditModel()
+                    {
+                        Id = RequestModel.ObjectId,
+                        Body = JObject.Parse(body)
+                    });
+                    foreach (var diff in changes)
+                    {
+                        body = Diff.Patch(body, diff.ToJson());
+                        list.Add(new AuditModel()
+                        {
+                            Id = RequestModel.ObjectId,
+                            Body = JObject.Parse(body)
+                        });
+                    }
+                    Changes = changes.Select(p=>p.ToJson());
+                    AuditObjects = list;
+                }
             }
-            Changes = changes?.Select(p=>p.ToJson());
-            AuditObjects = list;
+
             return Page();
         }
     }
