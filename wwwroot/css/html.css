@@ -147,3 +147,8 @@ ul.jsondiffpatch-textdiff {
   color: white;
   font-weight: bold;
 }
+
+pre{
+  white-space: pre-wrap;
+  font-size: 12px;
+}

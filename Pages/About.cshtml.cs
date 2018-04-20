@@ -19,6 +19,12 @@ namespace audit.Pages
             ProgrammingLanguages = new List<ProgrammingLanguage>();
             ProgrammingLanguages.Add(
                 new ProgrammingLanguage(){
+                    Name = "curl",
+                    CodeExample ="curl -X POST \"http://localhost:55777/api/Audit\" -H \"accept: application/json\" -H \"Content-Type: application/json-patch+json\" -d \"{\"id\": \"00000000-0000-0000-0000-000000000000\", \"body\": { }}\""
+                }
+            );
+            ProgrammingLanguages.Add(
+                new ProgrammingLanguage(){
                     Name = "JavaScript",
                     CodeExample =@"
                     qwe
