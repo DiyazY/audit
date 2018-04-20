@@ -1,0 +1,28 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+
+<p>
+    @Model.Description
+</p>
+<p>Examples:</p>
+<ul class="list-group">
+    @{
+        foreach (var item in Model.ProgrammingLanguages)
+        {
+            <li class="list-group-item">
+                <div>
+                    <p>@item.Name</p>
+                    <pre  style="white-space: pre-wrap;">@item.CodeExample</pre>
+                </div>
+            </li>
+        }
+    }
+</ul>
+
+
