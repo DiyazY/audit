@@ -1,3 +1,4 @@
+using audit.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,5 +29,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseComponentDefinitions();
 
 app.Run();
