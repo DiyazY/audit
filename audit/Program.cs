@@ -8,8 +8,6 @@ builder.Services.AddComponentDefinitions(typeof(IComponentDefinition));
 
 var app = builder.Build();
 
-app.MapGet("/hello", () => "Hello, World!");
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
