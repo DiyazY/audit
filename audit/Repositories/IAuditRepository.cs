@@ -5,8 +5,8 @@ namespace audit.Repositories
 
     public interface IAuditRepository
     {
-
-
-        Task<AuditModel> GetAuditModel(Guid id);
+        Task<AuditObject> GetAuditObject(Guid id);
+        Task SaveAuditObject(AuditObject auditObject);
+        Task UpdateAuditObject(AuditObject auditObject, string diff);
     }
 }
