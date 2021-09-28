@@ -8,6 +8,11 @@ namespace audit.Repositories
         {
             return new();
         }
+
+        public static AuditObject ToEntityModel(this AuditModel model)
+        {
+            return new();
+        }
     }
 
 }

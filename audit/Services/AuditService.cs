@@ -11,13 +11,28 @@ namespace audit.Services
             _repository = repository;
         }
 
-        public Task<AuditModel> GetAuditModel(Guid id)
+        public async Task<AuditModel> GetAuditModel(Guid id)
         {
-            if(id == Guid.Empty){// use (id is default)
-                System.Console.WriteLine("default"); 
+            if (id == Guid.Empty)
+            {// use (id is default)
+                System.Console.WriteLine("default");
             }
 
-            return _repository.GetAuditModel(id);
+            var auditObject = await _repository.GetAuditObject(id);
+            return auditObject.ToViewModel();
+        }
+
+        public async Task SaveAuditModel(AuditModel model)
+        {
+            // if(model is null) throw
+            var auditObject = await _repository.GetAuditObject(model.Id); 
+            if(auditObject is null){
+                auditObject = model.ToEntityModel();
+                await _repository.SaveAuditObject(auditObject);
+            }
+            else{
+                System.Console.WriteLine("updates auditable object");
+            }
         }
     }
 }
