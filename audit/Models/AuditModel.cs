@@ -1,10 +1,7 @@
-using System.Text.Json;
+namespace audit.Models;
 
-namespace audit.Models // checkout TODO: global using smt smt
+public class AuditModel
 {
-    public class AuditModel
-    {
-        public Guid Id { get; set; }
-        public object Body { get; set; }
-    }
+    public Guid Id { get; init; }
+    public object Body { get; init; }
 }
