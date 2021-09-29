@@ -1,14 +1,12 @@
-namespace audit.Repositories
+namespace audit.Repositories;
+
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+public sealed class AuditObject
 {
-    using MongoDB.Bson;
-    using MongoDB.Bson.Serialization.Attributes;
-    public sealed class AuditObject
-    {
 
-        [BsonId]
-        public Guid Id { get; set; }
-        public BsonDocument Body { get; set; }
-
-    }
-
+    [BsonId]
+    public Guid Id { get; init; }
+    public BsonDocument Body { get; set; }
 }

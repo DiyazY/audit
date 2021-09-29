@@ -1,11 +1,10 @@
+namespace audit.Utils;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace audit.Utils
+public interface IComponentDefinition
 {
-    public interface IComponentDefinition
-    {
-        void DefineServices(IServiceCollection services);
-        void DefineComponents(WebApplication app);
-    }
+    void DefineServices(IServiceCollection services);
+    void DefineComponents(WebApplication app);
 }
