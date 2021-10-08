@@ -23,7 +23,7 @@ public sealed class AuditRepository : IAuditRepository
         {
             list = cursor.Current;
         }
-        var auditObject = list.First();
+        var auditObject = list.FirstOrDefault();
         return auditObject;
     }
 

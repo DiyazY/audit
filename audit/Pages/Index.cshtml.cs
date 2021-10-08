@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using audit.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace audit.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly AuditService _auditService;
 
-    public IndexModel(ILogger<IndexModel> logger)
+    public IndexModel(AuditService auditService)
     {
-        _logger = logger;
+        _auditService = auditService;
     }
 
     public void OnGet()
