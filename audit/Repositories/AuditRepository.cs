@@ -1,8 +1,8 @@
 namespace audit.Repositories;
 
-    using audit.Models;
-    using MongoDB.Driver;
-    using MongoDB.Bson;
+using audit.Models;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 public sealed class AuditRepository : IAuditRepository
 {
