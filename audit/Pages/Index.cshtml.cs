@@ -13,18 +13,8 @@ public class IndexModel : PageModel
         _auditService = auditService;
     }
 
-    public IEnumerable<string> ErrorMessages{get;set;}
-
-    public IEnumerable<AuditModel> AuditObjects{get;set;}
-
-    // public void OnGet()
-    // {
-
-    // }
-
-    public async Task OnGetAsync(Guid id)
+    public void OnGet()
     {
-        // TODO: add some logic there!!!
-        AuditObjects = await _auditService.GetModelsOfAuditableObjectThroughItsLifecycle(id);
+
     }
 }
