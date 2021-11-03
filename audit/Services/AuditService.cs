@@ -37,11 +37,11 @@ public sealed class AuditService
         if (auditObject is not null)
         {
             var changes = auditObject?.GetChanges();
-            if (changes?.Count > 0)
+            if (changes.Any())
             {
-                List<AuditModel> list = new List<AuditModel>();
-                string body = auditObject?.Body?.ToString();
-                list.Add(new AuditModel()
+                List<AuditModel> list = new();
+                var body = auditObject?.Body?.ToString();
+                list.Add(new AuditModel
                 {
                     Id = id,
                     Body = body
@@ -49,7 +49,7 @@ public sealed class AuditService
                 foreach (var diff in changes)
                 {
                     body = Diff.Patch(body, diff.ToString());
-                    list.Add(new AuditModel()
+                    list.Add(new AuditModel
                     {
                         Id = id,
                         Body = body
@@ -82,7 +82,7 @@ public sealed class AuditService
             var diff = Diff.Get(
                 auditObject.LastBody.ToString(),
                 model.Body.ToString()
-                );
+            );
             Console.WriteLine($"diff : {diff}");
 
             // I left it here because here is easier to check how it works
