@@ -1,0 +1,24 @@
+﻿@page
+@model MyApp.Namespace.SequenceModel
+
+@{
+    if(Model.AuditObjects?.Any() == true){
+        <div class="container">
+            <ul class="list-group">
+                @{
+                    int i = 0;
+                    foreach (var item in Model.AuditObjects)
+                    {
+                        i++;
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-lg-1 text-center">@i</div>
+                                <pre class="col-lg-11" style="white-space: pre-wrap;">@item.Body</pre>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+}
