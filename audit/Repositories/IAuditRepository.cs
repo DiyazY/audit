@@ -3,9 +3,11 @@ namespace audit.Repositories;
 using audit.Models;
 using MongoDB.Driver;
 
+using MongoDB.Bson;
+
 public interface IAuditRepository
 {
     Task<AuditObject> GetAuditObject(Guid id);
     Task SaveAuditObject(AuditObject auditObject);
-    Task UpdateAuditObject(AuditObject auditObject, string diff);
+    Task UpdateAuditObject(Guid id, BsonDocument newLastBody, string diff);
 }

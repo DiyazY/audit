@@ -1,0 +1,65 @@
+﻿@page
+@model MyApp.Namespace.DiffSequenceModel
+@using System.Web
+@{
+}
+
+<link rel="stylesheet" href="~/css/annotated.css"/>
+<link rel="stylesheet" href="~/css/html.css"/>
+
+@{
+    if(Model.AuditObjects!=null && Model.AuditObjects.Any()){
+        int i = 0;
+        {
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 text-center"><h2>The Details of Changing </h2></div>
+                <div class="col-lg-5 text-center"><h2>Changed object</h2></div>
+            </div>
+        }
+
+        foreach (var item in Model.AuditObjects)
+        {
+            <div class="row">
+                <div class="col-lg-1 text-center">@(i+1)</div>
+                <div class="col-lg-6" id="visual-@(i)"></div>
+                <pre class="col-lg-5">@item.Body</pre>
+            </div> 
+            @if(i!=Model.AuditObjects.Count()-1){
+                <hr class="row"/>
+            }   
+            i++;   
+        }
+    }
+}
+
+<script src="~/js/jsondiffpatch.umd.min.js"></script>
+
+<script type="text/javascript">
+    let diff = [];
+
+    @if(Model.Changes!=null && Model.Changes.Any()){
+        foreach (var change in Model.Changes)
+        {
+            @:diff.push(JSON.parse('@Html.Raw(HttpUtility.JavaScriptStringEncode(change))'));
+        }
+    }
+
+    let left = [];
+
+    @if(Model.AuditObjects!=null && Model.AuditObjects.Any()){
+        foreach (var auditObject in Model.AuditObjects)
+        {
+            @:left.push(JSON.parse('@Html.Raw(HttpUtility.JavaScriptStringEncode(auditObject.Body.ToString()))'));
+        }
+    }
+
+    if(left.length>0 && diff.length>0){
+        left.forEach((item,i)=>{
+            if(i!=0)
+                document.getElementById(`visual-${i}`).innerHTML = jsondiffpatch.formatters.html.format(diff[i-1], item);
+            else
+                document.getElementById(`visual-${i}`).innerHTML = jsondiffpatch.formatters.html.format([item], item);
+        })
+    }
+</script>

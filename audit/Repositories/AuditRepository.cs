@@ -32,14 +32,14 @@ public sealed class AuditRepository : IAuditRepository
         await _context.GetCollection<AuditObject>(_collection).InsertOneAsync(auditObject);
     }
 
-    public async Task UpdateAuditObject(AuditObject auditObject, string diff) // use C#10/.NET6 features
+    public async Task UpdateAuditObject(Guid id, BsonDocument newLastBody, string diff) // use C#10/.NET6 features
     {
         ///var filter = Builders<AuditObject>.Filter.Eq("_id", auditObject.Id); TODO: why not filter
         var update = Builders<AuditObject>.Update
             .Push<BsonDocument>("_changes", BsonDocument.Parse(diff))
-            .Set("_lastBody", auditObject.Body);
+            .Set("_lastBody", newLastBody); // TODO fix it!!!!!!!!!!!!
         await _context
             .GetCollection<AuditObject>(_collection)
-            .UpdateOneAsync<AuditObject>(p=>p.Id == auditObject.Id, update);
+            .UpdateOneAsync<AuditObject>(p=>p.Id == id, update);
     }
 }
