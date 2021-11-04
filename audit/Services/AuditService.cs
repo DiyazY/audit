@@ -3,6 +3,7 @@ namespace audit.Services;
 using audit.Models;
 using audit.Repositories;
 using audit.Utils;
+using MongoDB.Bson;
 
 public sealed class AuditService
 {
@@ -13,7 +14,8 @@ public sealed class AuditService
         _repository = repository;
     }
 
-    public async Task<AuditModel> GetAuditModel(Guid id)// this method is useless. remove it!!!
+    // this method is useless. remove it!!!
+    public async Task<AuditModel> GetAuditModel(Guid id)
     {
         if (id == Guid.Empty)
         {
@@ -25,7 +27,7 @@ public sealed class AuditService
         return auditObject.ToViewModel();
     }
 
-    public async Task<IEnumerable<AuditModel>> GetModelsOfAuditableObjectThroughItsLifecycle(Guid id)
+    public async Task<(IEnumerable<AuditModel> models, IEnumerable<string> changes)> GetModelsOfAuditableObjectThroughItsLifecycle(Guid id)
     {
         if (id == Guid.Empty)
         {
@@ -55,7 +57,7 @@ public sealed class AuditService
                         Body = body
                     });
                 }
-                return list;
+                return (list, changes.Select(p => p.ToString()));
             }
         }
         return default;
@@ -91,7 +93,7 @@ public sealed class AuditService
 
             if (!String.IsNullOrEmpty(diff))
             {
-                await _repository.UpdateAuditObject(auditObject, diff);
+                await _repository.UpdateAuditObject(model.Id, BsonDocument.Parse(model.Body.ToString()),  diff);
             }
         }
     }

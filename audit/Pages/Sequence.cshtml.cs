@@ -13,10 +13,11 @@ public class SequenceModel : PageModel
         _auditService = auditService;
     }
 
-    public IEnumerable<AuditModel> AuditObjects{get;set;}
+    public IEnumerable<AuditModel> AuditObjects { get; set; }
 
     public async Task OnGetAsync(Guid id)
     {
-        AuditObjects = await _auditService.GetModelsOfAuditableObjectThroughItsLifecycle(id);
+        var (models, _) = await _auditService.GetModelsOfAuditableObjectThroughItsLifecycle(id);
+        AuditObjects = models;
     }
 }

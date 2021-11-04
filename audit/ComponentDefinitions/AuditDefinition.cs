@@ -22,14 +22,20 @@ public class AuditDefinition : IComponentDefinition
 
     public void DefineComponents(WebApplication app)
     {
-        app.MapPost("/audit", async (AuditModel model, AuditService service)=>{
+        app.MapPost("/audit", async (AuditModel model, AuditService service) =>
+        {
             //TODO: adjsut performance 
             await service.SaveAuditModel(model);
-        
+
             ///Console.WriteLine(model.Body);
         });
 
         app.MapGet("/audit/{id}", Task<AuditModel> (Guid id, AuditService service) => service.GetAuditModel(id));
-        app.MapGet("/audit/{id}/models", Task<IEnumerable<AuditModel>> (Guid id, AuditService service) => service.GetModelsOfAuditableObjectThroughItsLifecycle(id));        
+        app.MapGet("/audit/{id}/models", async Task<IEnumerable<AuditModel>> (Guid id, AuditService service) =>
+        {
+            var (models, _) = await service.GetModelsOfAuditableObjectThroughItsLifecycle(id);
+            return models;
+        }
+        );
     }
 }
