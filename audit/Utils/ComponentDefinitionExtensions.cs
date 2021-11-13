@@ -1,12 +1,7 @@
 namespace audit.Utils;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-
-
 
 public static class ComponentDefinitionExtensions
 {
