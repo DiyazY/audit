@@ -3,6 +3,9 @@ namespace audit.Repositories;
 using audit.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 public sealed class AuditRepository : IAuditRepository
 {
