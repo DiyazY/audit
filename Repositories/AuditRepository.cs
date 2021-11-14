@@ -11,6 +11,7 @@ public sealed class AuditRepository : IAuditRepository
 
     public AuditRepository(IMongoDatabase context)
     {
+        ArgumentNullException.ThrowIfNull(context);
         _context = context;
     }
 

@@ -10,6 +10,7 @@ public class DiffSequenceModel : PageModel
     private readonly AuditService _service;
     public DiffSequenceModel(AuditService service)
     {
+        ArgumentNullException.ThrowIfNull(service);
         _service = service;
     }
     public IEnumerable<AuditModel> AuditObjects { get; set; }

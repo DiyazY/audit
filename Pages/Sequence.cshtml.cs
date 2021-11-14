@@ -10,10 +10,11 @@ public class SequenceModel : PageModel
 
     public SequenceModel(AuditService auditService)
     {
+        ArgumentNullException.ThrowIfNull(auditService);
         _auditService = auditService;
     }
 
-    public IEnumerable<AuditModel> AuditObjects { get; set; }
+    public IEnumerable<AuditModel>? AuditObjects { get; set; }
 
     public async Task OnGetAsync(Guid id)
     {
