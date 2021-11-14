@@ -11,6 +11,7 @@ public sealed class AuditService
 
     public AuditService(IAuditRepository repository)
     {
+        ArgumentNullException.ThrowIfNull(repository);
         _repository = repository;
     }
 
