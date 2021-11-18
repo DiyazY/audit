@@ -27,6 +27,7 @@ jobs:
       uses: b3b00/coverlet-action@1.1.7
       with:
         output: ${{ github.workspace }}/coverage/lcov.info
+        testProject: ./tests/audit.unitTests/audit.unitTests.csproj
     - name: Coveralls
       uses: coverallsapp/github-action@1.1.3
       with:
