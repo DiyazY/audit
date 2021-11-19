@@ -24,9 +24,7 @@ jobs:
     - name: Test and coverage
       run: |
         printenv
-        dotnet test ./tests/audit.unitTests/audit.unitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../coverage/coverage.lcov /p:CoverletOutputFormat=lcov --no-restore
-        cd ./tests/coverage/
-        cat coverage.info 
+        dotnet test ./tests/audit.unitTests/audit.unitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../coverage/coverage.info /p:CoverletOutputFormat=lcov --no-restore
     - name: Coveralls
       uses: coverallsapp/github-action@v1.0.1
       with:
