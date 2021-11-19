@@ -33,6 +33,7 @@ jobs:
         # The directory where the generated report should be saved.
         targetdir: ./tests/coverage/
         reporttypes: lcov
+        verbosity: Verbose
     - name: Coveralls
       uses: coverallsapp/github-action@1.1.3
       with:
