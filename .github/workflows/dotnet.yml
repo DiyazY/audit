@@ -21,38 +21,9 @@ jobs:
       run: dotnet restore ./src/audit.csproj
     - name: Build
       run: dotnet build ./src/audit.csproj --no-restore
-#     - name: Test and coverage
-#       run: |
-#         printenv
-#         dotnet test ./tests/audit.unitTests/audit.unitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../coverage/coverage.info /p:CoverletOutputFormat=lcov --no-restore
-#     - name: Coveralls
-#       uses: coverallsapp/github-action@v1.0.1
-#       with:
-#         path-to-lcov: ./tests/coverage/coverage.info
-#         github-token: ${{secrets.GITHUB_TOKEN}}
-
-#     - name: Test
-#       run: dotnet test ./tests/audit.unitTests/audit.unitTests.csproj -c Debug -p:coverletOutput=../coverage/coverage.cobertura.xml -p:CollectCoverage=true -p:CoverletOutputFormat=cobertura -p:Exclude=\"\"  
-#     - name: ReportGenerator
-#       # You may pin to the exact commit or the version.
-#       # uses: danielpalme/ReportGenerator-GitHub-Action@118d20e5b0021657a48207aa80bce3b6c3ef2ff9
-#       uses: danielpalme/ReportGenerator-GitHub-Action@5.0.0
-#       with:
-#         # The coverage reports that should be parsed (separated by semicolon). Globbing is supported.
-#         reports: ./tests/coverage/coverage.cobertura.xml
-#         # The directory where the generated report should be saved.
-#         targetdir: ./tests/coverage/
-#         reporttypes: lcov
-#         verbosity: Verbose
-#     - name: Coveralls
-#       uses: coverallsapp/github-action@1.1.3
-#       with:
-#         github-token: ${{ secrets.github_token }}
-#         path-to-lcov: ./tests/coverage/lcov.info
-
-    - name: Test
+    - name: Test and coverage
       run: dotnet test ./tests/audit.unitTests/audit.unitTests.csproj -c Debug -p:coverletOutput=../coverage/coverage.info -p:CollectCoverage=true -p:CoverletOutputFormat=lcov -p:Exclude=\"\"  
-    - name: Coveralls
+    - name: Publishing results to Coveralls
       uses: coverallsapp/github-action@1.1.3
       with:
         github-token: ${{ secrets.github_token }}
