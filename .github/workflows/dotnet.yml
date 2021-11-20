@@ -21,15 +21,16 @@ jobs:
       run: dotnet restore ./src/audit.csproj
     - name: Build
       run: dotnet build ./src/audit.csproj --no-restore
-    - name: Test and coverage
-      run: |
-        printenv
-        dotnet test ./tests/audit.unitTests/audit.unitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../coverage/coverage.info /p:CoverletOutputFormat=lcov --no-restore
-    - name: Coveralls
-      uses: coverallsapp/github-action@v1.0.1
-      with:
-        path-to-lcov: ./tests/coverage/coverage.info
-        github-token: ${{secrets.GITHUB_TOKEN}}
+#     - name: Test and coverage
+#       run: |
+#         printenv
+#         dotnet test ./tests/audit.unitTests/audit.unitTests.csproj /p:CollectCoverage=true /p:CoverletOutput=../coverage/coverage.info /p:CoverletOutputFormat=lcov --no-restore
+#     - name: Coveralls
+#       uses: coverallsapp/github-action@v1.0.1
+#       with:
+#         path-to-lcov: ./tests/coverage/coverage.info
+#         github-token: ${{secrets.GITHUB_TOKEN}}
+
 #     - name: Test
 #       run: dotnet test ./tests/audit.unitTests/audit.unitTests.csproj -c Debug -p:coverletOutput=../coverage/coverage.cobertura.xml -p:CollectCoverage=true -p:CoverletOutputFormat=cobertura -p:Exclude=\"\"  
 #     - name: ReportGenerator
@@ -48,4 +49,12 @@ jobs:
 #       with:
 #         github-token: ${{ secrets.github_token }}
 #         path-to-lcov: ./tests/coverage/lcov.info
+
+    - name: Test
+      run: dotnet test ./tests/audit.unitTests/audit.unitTests.csproj -c Debug -p:coverletOutput=../coverage/coverage.info -p:CollectCoverage=true -p:CoverletOutputFormat=lcov -p:Exclude=\"\"  
+    - name: Coveralls
+      uses: coverallsapp/github-action@1.1.3
+      with:
+        github-token: ${{ secrets.github_token }}
+        path-to-lcov: ./tests/coverage/coverage.info
 
