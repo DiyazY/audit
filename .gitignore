@@ -288,4 +288,5 @@ __pycache__/
 *.xsd.cs
 appsettings.Production.json
 
-lcov.info
+tests/coverage/*.xml
+tests/coverage/*.info
