@@ -1,2 +1,2 @@
-# audit [![Coverage Status](https://coveralls.io/repos/github/DiyazY/audit/badge.svg?branch=master)](https://coveralls.io/github/DiyazY/audit?branch=master)
+# audit [![Coverage Status](https://coveralls.io/repos/github/DiyazY/audit/badge.svg?branch=master)](https://coveralls.io/github/DiyazY/audit?branch=master)![workflow](https://github.com/diyazy/audit/actions/workflows/dotnet.yml/badge.svg) [![GitHub license](https://img.shields.io/github/license/DiyazY/audit)](https://github.com/DiyazY/audit/blob/dev/LICENSE)
 Audit of Objects as a service. It's not the best concept, even, it might be an antipattern of Event Sourcing. It's a service that can be used instead of Event Sourcing if it's too late to use Event Sourcing and your architecture is sucks.
