@@ -1,4 +1,4 @@
-name: audit_cicd
+name: build
 
 on:
   push:
