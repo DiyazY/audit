@@ -37,4 +37,19 @@ public class DiffTest
         Assert.NotNull(olderObject);
         return Verifier.VerifyJson(olderObject);
     }
+
+    [Fact]
+    public Task Diff_Patch_Should_Return_NewerObject_By_OldObject_and_JsonDiff()
+    {
+        // arrange
+        var diff = "{\"name\": [\"diyaz\",\"diyaz yakubov\"]}";
+        var oldObject = "{\"name\": \"diyaz\"}";
+        
+        // act
+        var newerObject = Diff.Patch(oldObject, diff);
+
+        // assert
+        Assert.NotNull(newerObject);
+        return Verifier.VerifyJson(newerObject);
+    }
 }
