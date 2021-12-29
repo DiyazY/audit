@@ -35,3 +35,4 @@ app.MapRazorPages();
 app.UseComponentDefinitions();
 
 app.Run();
+public partial class Program { } // for testing purposes

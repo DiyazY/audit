@@ -13,7 +13,7 @@ public class AuditDefinition : IComponentDefinition
 {
     public void DefineServices(IServiceCollection services)
     {
-        var mongoClient = new MongoClient(Environment.GetEnvironmentVariable("connection-string"));
+        var mongoClient = new MongoClient(Environment.GetEnvironmentVariable("connection_string"));
         var database = mongoClient.GetDatabase("AuditDb"); // investigate how to inject it efficiently!
         services.AddTransient<IMongoDatabase>(_ => database);
         services.AddTransient<IAuditRepository, AuditRepository>();
