@@ -290,3 +290,5 @@ appsettings.Production.json
 
 tests/coverage/*.xml
 tests/coverage/*.info
+
+.envrc
