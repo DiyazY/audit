@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <!-- <WarningsAsErrors>CS8600;CS8602;CS8603;CS8618</WarningsAsErrors> -->
     <Version>1.1.0-beta</Version>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
