@@ -1,0 +1,32 @@
+# currently only for local dev
+version: "3.7"
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    networks:
+      - audit_net
+    container_name: mongo-db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo-user
+      - MONGO_INITDB_ROOT_PASSWORD=mongo-psw
+    volumes:
+      - /data/db
+    ports:
+      - 27017:27017
+
+  audit:
+    image: audit:lates
+    ports:
+      - "7777:80"
+    container_name: audit-app
+    networks:
+      - audit_net
+    environment:
+      - connection_string=mongodb://mongo-user:mongo-psw@mongodb:27017
+    depends_on:
+      - mongodb
+
+networks:
+  audit_net:
+

@@ -86,7 +86,7 @@ public sealed class AuditService
                 auditObject.LastBody.ToString(),
                 model.Body.ToString()
             );
-            Console.WriteLine($"diff : {diff}");
+            // Console.WriteLine($"diff : {diff}");
 
             // I left it here because here is easier to check how it works
             //var patch = Diff.Patch(body.ToJson(), diff);

@@ -3,7 +3,7 @@ using System;
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace audit.unitTests;
+namespace audit.integrationTests;
 
 public class PagesTest  : IClassFixture<WebApplicationFactory<Program>>
 {
