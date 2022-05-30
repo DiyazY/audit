@@ -292,3 +292,4 @@ tests/coverage/*.xml
 tests/coverage/*.info
 
 .envrc
+.cache
