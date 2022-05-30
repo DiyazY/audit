@@ -4,8 +4,8 @@ EXPOSE 80
 EXPOSE 443
 
 COPY . ./
-RUN dotnet restore ./src/audit.csproj --disable-parallel && \
-    dotnet publish ./src/audit.csproj -c Release -o publish --no-restore --no-self-contained -r linux-x64
+RUN dotnet restore audit.csproj --disable-parallel && \
+    dotnet publish audit.csproj -c Release -o publish --no-restore --no-self-contained -r linux-x64
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 

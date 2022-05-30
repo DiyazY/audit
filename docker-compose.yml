@@ -11,12 +11,14 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=mongo-user
       - MONGO_INITDB_ROOT_PASSWORD=mongo-psw
     volumes:
-      - /data/db
-    ports:
-      - 27017:27017
+      - db:/data/db
+    # ports:
+    #   - 27017:27017
 
   audit:
-    image: audit:lates
+    build:
+      dockerfile: Dockerfile
+      context: ./src
     ports:
       - "7777:80"
     container_name: audit-app
@@ -29,4 +31,8 @@ services:
 
 networks:
   audit_net:
+
+volumes:
+  db:
+
 

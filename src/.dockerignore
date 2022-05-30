@@ -282,7 +282,13 @@ Dockerfile
 
 # .env file contains default environment variables for docker
 .env
+.envrc
 .git/
 
 .github/
 publish/
+
+# todo: test it
+# some folder
+bin
+obj
